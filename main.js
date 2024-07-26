@@ -1,4 +1,5 @@
 const { Client, IntentsBitField } = require("discord.js");
+const app = require("express")();
 
 require("dotenv").config();
 const client = new Client({
@@ -21,3 +22,12 @@ client.on("messageCreate", (msg) => {
 });
 
 client.login(process.env.TOKEN);
+
+app.get("/", (req, res) => {
+  res.send("Bot is runnig");
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`server is listening on port ${port}`);
+});
