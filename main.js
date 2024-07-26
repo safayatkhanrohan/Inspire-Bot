@@ -16,6 +16,7 @@ client.on("ready", () => {
 });
 
 client.on("messageCreate", (msg) => {
+  console.log(msg.content);
   if (msg.author.bot) return;
   msg.reply("Thanks for the message !");
 });
