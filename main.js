@@ -4,6 +4,8 @@ require("dotenv").config();
 
 const quotes = require("./quotes");
 
+let firstTime = true;
+
 const client = new Client({
   intents: [
     IntentsBitField.Flags.GuildMembers,
@@ -30,8 +32,10 @@ client.on("ready", () => {
 client.on("messageCreate", async (msg) => {
   if (msg.author.bot) return;
   let isSad = false;
-  if (msg.author.username === process.env.SECRECT_P) {
+
+  if (firstTime && msg.author.username === process.env.SECRECT_P) {
     await msg.reply(process.env.SECRECT_T);
+    firstTime = false;
     return;
   }
 
